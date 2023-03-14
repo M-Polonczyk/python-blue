@@ -1,0 +1,10 @@
+{%extends "base.html"%}
+{% block content %}   
+<div style="text-align: center; width: 800px; margin: 0 auto;">
+    <h1>Exists</h1>
+    <p>{{object.url}}</p>
+    <p>{{object.get_url}}</p>
+    <p><a href="{{object.get_url}}">Redirect here</a></p>
+    <a href="/">+New</a>
+</div>
+{% endblock content %}
