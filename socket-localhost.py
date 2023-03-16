@@ -1,10 +1,11 @@
-import ipaddress
+# import ipaddress
 import socket
 
 
 def main():
     try:
         mysocket = socket.socket()
+        # setting port and IP
         mysocket.connect(('127.0.0.1', 50000))
         print(" connection estabilish..")
         while True:
