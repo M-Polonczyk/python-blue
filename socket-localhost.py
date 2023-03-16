@@ -1,6 +1,7 @@
 import ipaddress
 import socket
-from random import randrange
+
+
 def main():
     try:
         mysocket = socket.socket()
@@ -23,21 +24,6 @@ def main():
                 break
     except Exception as e:
         print(e)
-
-
-
-
-    dice = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0}
-    for i in range(5):
-        dice[randrange(1, 7)] += 1
-    print(dice)
-    classroom = []
-    for i in range(7):
-        classroom.append([])
-        for students in range(1,11):
-            classroom[i].append(students)
-    for students in classroom:
-        print(students)
 
 
 if __name__ == '__main__':
