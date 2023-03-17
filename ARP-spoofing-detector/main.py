@@ -1,7 +1,6 @@
 import os
 from log import log_writer
-import datetime
-import ipaddress
+from datetime import datetime
 
 
 def arp_table_extractor():
@@ -23,17 +22,14 @@ def arp_table_extractor():
             addresses[split_line[0]] = split_line[1]
         i += 1
 
-    print(addresses.keys())
-    print(addresses.values())
-    print(arp_table_lines)
     return addresses
 
 
 def arp_table_mac_duplication(addr=[]):
     addr.sort()
-    for i in range(0, len(addr) - 1):
+    for i in range(len(addr) - 1):
         if addr[i] == addr[i + 1]:
-            return i
+            return addr[i]
     return False
 
 
@@ -42,6 +38,7 @@ mac_addr = []
 for row in addresses.keys():
     mac_addr.append(row)
 print(mac_addr)
-index = arp_table_mac_duplication(mac_addr)
-if index == type(int):
-    log_writer(mac_addr[index], datetime)
+duplicated = arp_table_mac_duplication(mac_addr)
+# test
+# duplicated = arp_table_mac_duplication(['01-5e-5e-01-00-fb', '01-01-5e-00-00-ff', '01-01-5e-00-00-ff']) 
+log_writer(duplicated, datetime.now().strftime('%d/%m/%Y %H:%M:%S')) if duplicated is not False else print('All good!')
