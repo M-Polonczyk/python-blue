@@ -6,22 +6,13 @@ from datetime import datetime
 def arp_table_extractor():
     arp_table = os.popen('arp -a').read()
     arp_table_lines = arp_table.splitlines()
-    addresses = {}
-    i = 0
+    addresses = {'MAC': 'IP'}
     for line in arp_table_lines:
-        if line.__contains__('ff:ff:ff:ff:ff:ff') or line.__contains__('ff-ff-ff-ff-ff-ff'):
+        if line.__contains__('ff:ff:ff:ff:ff:ff') or line.__contains__('ff-ff-ff-ff-ff-ff') or line.__contains__('Int'):
             continue
-        elif i > 2:
-            split_line = line.split(' ')
-            for j in range(len(split_line)):
-                split_line.sort()
-                if split_line[0] == '':
-                    split_line.remove('')
-                else:
-                    break
-            addresses[split_line[0]] = split_line[1]
-        i += 1
-
+        if arp_table_lines.index(line) > 0:
+            split_line = remove_items(line.split(' '), '')
+            addresses[split_line[1]] = split_line[0]
     return addresses
 
 
