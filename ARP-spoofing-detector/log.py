@@ -1,14 +1,5 @@
-
-
 def log_writer(mac_address, date):
+    print('Arp spoofed\nGenerating log in log.txt for address',mac_address)
     with open('log.txt', 'a') as f:
-        f.write('Arp Spoofed!\n')
-        f.write('The address is: ')
-        f.write(mac_address)
-        f.write('\nDate: ')
-        f.write(date)
-        f.write('\n')
-
-
-
-log_writer('aa-aa-aa-aa-aa-aa','123456')
+        f.write('Arp Spoofed!\n'+'The address is: '+mac_address+'\nDate: '+str(date)+'\n\n')
+        f.close()
